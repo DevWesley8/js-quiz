@@ -35,13 +35,25 @@ const explanation = document.getElementById("explanation");
     // TODO 5: Declare an isCorrect function that compares a guess to the right answer
     // isCorrect(guess) should return true if the guess matches the fact's answer
     
-        function isCorrect(guessValue) {
-            return guessValue === fact.answer;
+        function isCorrect(guessString) {
+            return guessString === fact.trueOrFalse.toString();
         }
 
     // TODO 6A: Use a for loop to add a click event listener to each of the optionButtons
+        for (let button of optionButtons) {
+            button.addEventListener("click", (event) => {
+                explanation.textContent = fact.explanation;
+                for (let otherButton of optionButtons) {
+                    disable(otherButton);
+                }
+                if (isCorrect(button.value)) {
+                    button.classList.add("correct");
+                } else {
+                    button.classList.add("incorrect");
+                }
+            })
+        }
             // TODO 6B: Within the event handler function, display the fact's explanation by setting the text of the explanation element
-
 
             // TODO 7: Within the event handler function, 
             // Use a for loop to disable all the option buttons
